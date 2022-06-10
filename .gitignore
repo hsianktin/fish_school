@@ -11,3 +11,5 @@ project_report/
 fig/eps
 fig/pdf
 fig/svg
+.gitignore
+!readme.md
