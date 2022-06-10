@@ -1,0 +1,54 @@
+\RequirePackage{luatex85}
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{amsmath}
+\usepgfplotslibrary{colormaps}
+\usetikzlibrary[pgfplots.colormaps]
+\begin{document}
+\begin{tabular}{ll} 
+    % (a)
+    \begin{tikzpicture}[
+        baseline,
+        ] 
+        \begin{semilogxaxis}[width={1.7in}, height={1.7in}, xlabel={$K$}, ylabel={$R$}, title={${E}I$}, view={0}{90}, colorbar, colormap/temp, clip={false}, point meta min={0}, point meta max={1}, colorbar style={width=0.2cm}]
+            \node[anchor=south east] at (rel axis cs:-.02,1.02) {(a)};
+            \addplot3[surf, shader={flat}, mesh/rows={7}, mesh/cols={7}]
+                table[col sep={comma}, x={K}, y={ℓ}, z={mean_info_propagated}] {df_plot_uniform_circle_l_divergence_polarized.csv};
+            \legend{{polarized}}
+        \end{semilogxaxis} 
+    \end{tikzpicture} 
+    &
+    % (b)
+    \begin{tikzpicture}[baseline]
+        \begin{semilogxaxis}[width={1.7in}, height={1.7in}, xlabel={$K$}, ylabel={$R$}, title={${E}I$}, view={0}{90}, colorbar, colormap/temp, clip={false}, point meta min={0}, point meta max={1}, colorbar style={width=0.2cm}]
+            \node[anchor=south east] at (rel axis cs:-.02,1.02) {(b)};
+            \addplot3[surf, shader={flat}, mesh/rows={7}, mesh/cols={7}]
+            table[col sep={comma}, x={K}, y={ℓ}, z={mean_info_propagated}] {df_plot_uniform_circle_l_divergence_swirling.csv};
+            \legend{{milling}}
+        \end{semilogxaxis}
+    \end{tikzpicture}
+    
+    \\
+    % (c)
+    \begin{tikzpicture}[baseline] 
+        \begin{semilogxaxis}[restrict y to domain={0.4:1.6}, width={1.7in}, height={1.7in}, xlabel={$v$}, ylabel={$R$}, title={${E}I$}, view={0}{90}, colorbar, colormap/temp, clip={false}, point meta min={0}, point meta max={1}, colorbar style={width=0.2cm}]
+            \addplot3[surf, shader={flat}, mesh/rows={6}, mesh/cols={7}]
+                table[col sep={comma}, x={v}, y={ℓ}, z={mean_info_propagated}] {df_plot_uniform_circle_l_v_polarized.csv};
+            \legend{{polarized}}
+            \node[anchor=south east] at (rel axis cs:-.02,1.02) {(c)};
+        \end{semilogxaxis}
+    \end{tikzpicture} 
+    & 
+    % (d)
+    \begin{tikzpicture}[baseline] 
+        \begin{semilogxaxis}[restrict y to domain={0.4:1.6}, width={1.7in}, height={1.7in}, xlabel={$v$}, ylabel={$R$}, title={${E}I$}, view={0}{90}, colorbar, colormap/temp, clip={false}, point meta min={0}, point meta max={1}, colorbar style={width=0.2cm}]
+            \addplot3[surf, shader={flat}, mesh/rows={6}, mesh/cols={7}]
+                table[col sep={comma}, x={v}, y={ℓ}, z={mean_info_propagated}] {df_plot_uniform_circle_l_v_swirling.csv};
+            \legend{{milling}}
+            \node[anchor=south east] at (rel axis cs:-.02,1.02) {(d)};
+        \end{semilogxaxis}
+    \end{tikzpicture} 
+    
+\end{tabular}% 
+\end{document}

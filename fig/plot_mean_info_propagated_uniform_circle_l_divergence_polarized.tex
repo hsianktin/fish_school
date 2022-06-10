@@ -1,0 +1,23 @@
+\RequirePackage{luatex85}
+\documentclass[tikz]{standalone}
+% Default preamble
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{polar}
+\usepgfplotslibrary{smithchart}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{dateplot}
+\usepgfplotslibrary{ternary}
+% Custom preamble from global variable:
+\usepgfplotslibrary{colormaps}
+\usetikzlibrary[pgfplots.colormaps]
+\begin{document}
+\begin{tikzpicture}
+\begin{semilogxaxis}[width={3.4in}, height={3.4in}, xlabel={intensity of counter-divergence effects $K$}, ylabel={interaction length $R$}, title={mean information propagated}, view={0}{90}, colorbar, point meta min={0}, point meta max={1}, colormap/temp, clip={false}]
+    \addplot3[surf, shader={flat}, mesh/rows={7}, mesh/cols={7}]
+        table[col sep={comma}, x={K}, y={ℓ}, z={mean_info_propagated}] {df_plot_uniform_circle_l_divergence_polarized.csv};
+    \legend{{polarized}}
+\end{semilogxaxis}
+\end{tikzpicture}
+\end{document}

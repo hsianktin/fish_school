@@ -1,0 +1,13 @@
+*.md
+generative\ models/
+microscale topics/
+network project/
+opinion dynamics/
+project_report/
+*.svg
+*.py
+*.ipynb
+*.pdf
+fig/eps
+fig/pdf
+fig/svg
